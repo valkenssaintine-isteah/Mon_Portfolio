@@ -1,12 +1,13 @@
-function Button({ text, className }) {
+import React from 'react';
+
+export default function Button({ children, onClick, type = 'button', variant = 'primary' }) {
   return (
-    <button
-      aria-label={text}
-      className={`px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition ${className}`}
+    <button 
+      type={type} 
+      className={`btn btn-${variant}`} 
+      onClick={onClick}
     >
-      {text}
+      {children}
     </button>
   );
 }
-
-export default Button;
