@@ -1,69 +1,64 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import './styles/globals.css';
+import './styles/colors.css';
+import './styles/typography.css';
+import './App.css';
+import { ThemeProvider, ThemeContext } from './context/ThemeContext';
 import Navbar from './components/Navbar';
-import Button from './components/Button';
 import TeamCard from './components/TeamCard';
 import ProjectCard from './components/ProjectCard';
 import ContactForm from './components/ContactForm';
+import GitHubStats from './components/GitHubStats';
 
-function App() {
-  const [theme, setTheme] = useState('dark');
-
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
-
-  // Done pou teste manm ekip yo
-  const teamMembers = [
-    { name: 'Manm 1', role: 'Développeur Frontend', bio: 'Responsable des composants UI.', photoUrl: '', githubUrl: 'https://github.com' },
-    { name: 'Manm 2', role: 'Développeur Backend', bio: 'Responsable des APIs.', photoUrl: '', githubUrl: 'https://github.com' },
-  ];
-
-  // Done pou teste pwojè yo
-  const projects = [
-    { title: 'Tâche 1 - Configuration', description: 'Mise en place de l’environnement de travail et Git.', tags: ['Git', 'React', 'Vite'] },
-    { title: 'Tâche 2 - Composants UI', description: 'Développement des composants graphiques de l’interface.', tags: ['React', 'CSS3', 'JSX'] },
-  ];
+function MainApp() {
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <div className={`app ${theme}`}>
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
-      
-      <main className="container" style={{ padding: '2rem 1rem' }}>
-        {/* Section Présentation / Hero */}
-        <section id="accueil" style={{ marginBottom: '3rem' }}>
-          <h1>Bienvenue sur notre Portfolio Équipe</h1>
-          <p>Projet collaboratif réalisé avec React.</p>
-          <Button onClick={() => alert('Bouton marche bien!')}>Découvrir l'équipe</Button>
-        </section>
+    <div className="app-container">
+      {/* Bara navigasyon ak bouton Theme */}
+      <header className="navbar-header">
+        <div className="container navbar">
+          <h2>Portfolio<span>.dev</span></h2>
+          <button className="btn-theme" onClick={toggleTheme}>
+            {theme === 'dark' ? '☀️ Mode Clair' : '🌙 Mode Sombre'}
+          </button>
+        </div>
+      </header>
 
+      <main className="container">
         {/* Section Équipe */}
-        <section id="equipe" style={{ marginBottom: '3rem' }}>
+        <section id="equipe" className="section">
           <h2>Notre Équipe</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginTop: '1rem' }}>
-            {teamMembers.map((member, index) => (
-              <TeamCard key={index} {...member} />
-            ))}
+          <div className="projects-grid">
+            <TeamCard 
+              name="Nom Membre 1" 
+              role="Chef de Projet / Task 1 & 2" 
+              bio="Spécialiste Intégration HTML/CSS et Accessibilité." 
+            />
           </div>
         </section>
 
-        {/* Section Projets */}
-        <section id="projets" style={{ marginBottom: '3rem' }}>
-          <h2>Nos Projets</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '1rem' }}>
-            {projects.map((project, index) => (
-              <ProjectCard key={index} {...project} />
-            ))}
-          </div>
+        {/* Section API GitHub */}
+        <section className="section">
+          <h2>Données GitHub de l'Équipe</h2>
+          {/* Mande moun Tâche 3 a mete non itilizatè GitHub pa l la la a */}
+          <GitHubStats username="octocat" /> 
         </section>
 
         {/* Section Contact */}
-        <section id="contact" style={{ marginBottom: '3rem' }}>
+        <section id="contact" className="section">
           <h2>Contactez-nous</h2>
-          <ContactForm onSubmitMessage={(data) => console.log('Données du formulaire:', data)} />
+          <ContactForm />
         </section>
       </main>
     </div>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <ThemeProvider>
+      <MainApp />
+    </ThemeProvider>
+  );
+}
