@@ -71,7 +71,12 @@ app.post("/api/contact", (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
+  const indexPath = path.join(__dirname, "dist", "index.html");
+  if (fs.existsSync(indexPath)) {
+    res.sendFile(indexPath);
+  } else {
+    res.status(200).send("API Express ap mache! (Vite build ap prepare...)");
+  }
 });
 
 app.listen(PORT, () => {
