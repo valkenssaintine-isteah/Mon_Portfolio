@@ -1,0 +1,341 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: 0.35s ease;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.text-main {
+  color: var(--text-primary);
+}
+
+.hero-text,
+.hero-text * {
+  color: #000000 !important;
+}
+
+.dark .hero-text,
+.dark .hero-text * {
+  color: #000000 !important;
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+section {
+  margin-bottom: 2.5rem;
+}
+
+.card,
+.team-card,
+.project-card,
+.github-stats,
+.contact-form,
+footer,
+header {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+}
+
+form,
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 600px;
+  margin: 1.5rem auto;
+  background-color: var(--bg-card);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.dark input,
+.dark textarea {
+  background-color: rgba(15, 23, 42, 0.8);
+}
+
+input:focus,
+textarea:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+button,
+.btn,
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+}
+
+button:hover,
+.btn:hover {
+  background-color: var(--primary-hover);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  body {
+    background-attachment: fixed;
+  }
+
+  section {
+    margin-bottom: 1.25rem;
+  }
+}
+
+footer, .footer {
+  background-color: var(--bg-footer);
+  color: var(--text-primary);
+}
+
+footer h1, footer h2, footer h3, footer h4,
+.footer h1, .footer h2, .footer h3, .footer h4 {
+  color: var(--text-primary) !important;
+}
+
+footer p, footer li, footer span,
+.footer p, .footer li, .footer span {
+  color: var(--text-secondary) !important;
+}
+
+footer a, .footer a {
+  color: var(--text-secondary) !important;
+  text-decoration: none;
+}
+
+footer a:hover, .footer a:hover {
+  color: var(--primary-color) !important;
+}
+
+.badge, .hero-badge, .tag, [class*="badge"], [class*="tag"] {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  padding: 6px 16px !important;
+  border-radius: 20px !important;
+  display: inline-block !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3) !important;
+}
+
+footer strong, footer b, footer h4, footer h5,
+.footer strong, .footer b, .footer h4, .footer h5,
+footer ul li, .footer ul li {
+  color: var(--text-primary) !important;
+  font-weight: 700 !important;
+}
+
+footer small, footer p, footer span, .footer small, .footer p {
+  color: var(--text-secondary) !important;
+}
+
+.team-card p {
+  color: var(--text-secondary) !important;
+  opacity: 1 !important; 
+}
+
+.team-card h3, .team-card .name {
+  color: var(--text-primary) !important;
+}
+
+.team-card .role {
+  color: var(--text-primary) !important;
+  opacity: 0.8; 
+}
+
+/* 1. PAJ GITHUB: Tout tèks nan kat GitHub la rete an nwa pou l lizib */
+.github-stats,
+.github-stats *,
+[class*="github"] h2,
+[class*="github"] h3,
+[class*="github"] p,
+[class*="github"] span,
+[class*="github"] div {
+  color: #0f172a !important;
+}
+
+/* 2. PAJ CONTACT: Tit yo (labels) sou tèt chak liy antre yo rete an nwa */
+.contact-form label,
+.form-group label,
+form label {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+/* 3. PAJ ÉQUIPE: Tit "Notre Équipe" an nwa, non ak biyografi nan kat yo an blan */
+main h1, main h2, .equipe-container > h1, .equipe-container > h2 {
+  color: #0f172a !important; /* Tit "Notre Équipe" rete an nwa */
+}
+
+.team-card h3,
+.team-card .name,
+.team-card strong,
+.team-card p,
+.team-card span,
+.team-card .role {
+  color: #ffffff !important; /* Non ak tout biyografi yo an blan */
+  opacity: 1 !important;
+}
+
+/* Fòse tout tèks ak chif anndan kat GitHub yo vin nwa */
+.bg-white,
+.bg-white * {
+  color: #0f172a !important;
+}
+
+/* Sèten ke deskripsyon ak ti tit yo byen fonse */
+.bg-white p, 
+.bg-white span {
+  color: #475569 !important;
+}
+
+.bg-white h3, 
+.bg-white h4, 
+.bg-white strong {
+  color: #0f172a !important;
+}
+
+/* Fè tout tèks, etikèt ak bwat fòm Kontak la vin BLAN lè w nan Dark Mode */
+body.dark .contact-form label,
+body.dark-mode .contact-form label,
+.dark .contact-form label,
+body.dark form label,
+body.dark-mode form label,
+.dark form label,
+body.dark .form-group label,
+body.dark-mode .form-group label,
+.dark .form-group label {
+  color: #ffffff !important;
+}
+
+/* Koulè tèks ak fond anndan bwat antre yo (inputs) nan Dark Mode */
+body.dark input, body.dark textarea,
+body.dark-mode input, body.dark-mode textarea,
+.dark input, .dark textarea {
+  color: #ffffff !important;
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+body.dark input::placeholder, body.dark textarea::placeholder,
+body.dark-mode input::placeholder, body.dark-mode textarea::placeholder,
+.dark input::placeholder, .dark textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* =========================================================
+   1. KAT ÉQUIPE: Tèks yo toujou BLAN paske fond kat la se nwa/ble fonse
+   ========================================================= */
+.team-card,
+[class*="team-card"] {
+  background-color: #1e293b !important;
+}
+
+.team-card h3,
+.team-card h4,
+.team-card .name,
+.team-card strong,
+.team-card p,
+.team-card span,
+.team-card div {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+body:not(.dark):not(.dark-mode) footer,
+body:not(.dark):not(.dark-mode) .footer {
+  background-color: #f8fafc !important;
+  border-top: 1px solid #e2e8f0;
+}
+
+body:not(.dark):not(.dark-mode) footer *,
+body:not(.dark):not(.dark-mode) .footer * {
+  color: #0f172a !important;
+}
+
+body:not(.dark):not(.dark-mode) footer p,
+body:not(.dark):not(.dark-mode) footer span {
+  color: #334155 !important;
+}
+
+body.dark footer,
+body.dark-mode footer,
+.dark footer,
+body.dark .footer,
+body.dark-mode .footer,
+.dark .footer {
+  background-color: #0f172a !important;
+  border-top: 1px solid #334155;
+}
+
+body.dark footer *,
+body.dark-mode footer *,
+.dark footer *,
+body.dark .footer *,
+body.dark-mode .footer *,
+.dark .footer * {
+  color: #ffffff !important;
+}
+
+body.dark footer p,
+body.dark-mode footer p,
+.dark footer p,
+body.dark footer span,
+body.dark-mode footer span,
+.dark footer span {
+  color: #cbd5e1 !important;
+}
