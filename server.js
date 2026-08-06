@@ -17,7 +17,12 @@ if (!fs.existsSync(messagesFile)) {
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'dist')));
+
+// Sèvi dossier dist sèlman si li egziste
+const distPath = path.join(__dirname, 'dist');
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+}
 
 app.post('/api/contact', (req, res) => {
   const { name, email, message } = req.body;
@@ -47,16 +52,13 @@ app.post('/api/contact', (req, res) => {
   };
 
   fs.readFile(messagesFile, 'utf8', (readErr, data) => {
-    if (readErr) {
-      return res.status(500).json({ error: 'Erreur de lecture du fichier local.' });
-    }
-
     let messages = [];
-
-    try {
-      messages = JSON.parse(data || '[]');
-    } catch (error) {
-      messages = [];
+    if (!readErr) {
+      try {
+        messages = JSON.parse(data || '[]');
+      } catch (error) {
+        messages = [];
+      }
     }
 
     messages.push(newMessage);
@@ -79,7 +81,7 @@ app.get('*', (req, res) => {
   if (fs.existsSync(indexPath)) {
     res.sendFile(indexPath);
   } else {
-    res.status(200).send('API Express ap mache!');
+    res.status(200).send('API Express ap mache nòmalman!');
   }
 });
 
